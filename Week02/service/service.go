@@ -1,8 +1,13 @@
 package service
 
-import "net/http"
+import (
+	dao "week02/dao"
+)
 
-func Service(writer http.ResponseWriter, request *http.Request)  {
-	tmp := []byte("hello world")
-	writer.Write(tmp)
+func Service() (ret []byte, err error) {
+	err = dao.FindSomething()
+	if err != nil {
+		return nil, err
+	}
+	return []byte("hello"), nil
 }
